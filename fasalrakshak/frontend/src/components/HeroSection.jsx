@@ -3,6 +3,7 @@ import { motion, useScroll, useTransform } from 'framer-motion';
 import { Link } from 'react-router-dom';
 import { Landmark } from 'lucide-react';
 import { useLanguage } from '../context/LanguageContext';
+import { APK_CONFIG } from '../lib/Constants';
 
 const MotionLink = motion.create(Link);
 
@@ -81,18 +82,24 @@ const HeroSection = () => {
 
           {/* Call to Actions */}
           <div className="flex flex-col sm:flex-row items-center sm:items-start gap-4 w-full sm:w-auto">
-            <MotionLink
+            <motion.a
               whileHover={{ scale: 1.02 }}
               whileTap={{ scale: 0.98 }}
-              to="#download"
-              className="flex items-center justify-center gap-4 bg-[#166534] text-white font-bold text-[17px] px-8 py-[18px] rounded-full transition-all duration-300 shadow-xl w-full sm:w-auto hover:bg-[#14532d]"
+              href={APK_CONFIG.downloadUrl}
+              download={APK_CONFIG.filename}
+              className="flex items-center justify-center gap-4 bg-[#166534] text-white font-bold text-[17px] px-8 py-[18px] rounded-full transition-all duration-300 shadow-xl w-full sm:w-auto hover:bg-[#14532d] cursor-pointer"
             >
-              <span>{t('hero.downloadBtn')}</span>
+              <div className="flex items-center gap-2">
+                <span>{t('hero.downloadBtn')}</span>
+                <span className="text-[10px] bg-white/20 px-2 py-0.5 rounded-full uppercase tracking-wider font-extrabold text-green-100">
+                  APK v{APK_CONFIG.version}
+                </span>
+              </div>
               <div className="flex items-center gap-2 border-l border-white/20 pl-4 ml-1">
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="w-[18px] h-[18px]"><polygon points="5 3 19 12 5 21 5 3"></polygon></svg>
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="w-[20px] h-[20px]"><path d="M12 20.94c1.5 0 2.75 1.06 4 1.06 3 0 6-8 6-12.22A4.91 4.91 0 0 0 17 5c-2.22 0-4 1.44-5 2-1-.56-2.78-2-5-2a4.9 4.9 0 0 0-5 4.78C2 14 5 22 8 22c1.25 0 2.5-1.06 4-1.06Z"></path><path d="M10 2c1 .5 2 2 2 5"></path></svg>
               </div>
-            </MotionLink>
+            </motion.a>
 
             <MotionLink
               whileHover={{ scale: 1.02 }}

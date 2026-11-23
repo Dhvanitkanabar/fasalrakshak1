@@ -31,3 +31,8 @@ datasets/
 backend/ai_service/venv/
 backend/ai_models/
 __pycache__/
+
+# Mobile / Android APK builds
+*.apk
+*.aab
+
